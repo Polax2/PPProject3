@@ -41,16 +41,16 @@ public class UserController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    // TODO: pobieranie jednego usera po id do servisu dodać
     public ResponseEntity<GetUserDto> getOneById(@PathVariable long id){
-        return null;
+        GetUserDto dto = userService.getOneById(id);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/getAll")
     @PreAuthorize("hasRole('ADMIN')")
-    //TODO: pobieranie listy plus paging do serwisu dodać
-    public ResponseEntity<List<GetUserDto>> getAll(){
-        return null;
+    public ResponseEntity<GetUserPageResponseDto> getAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+        GetUserPageResponseDto dto = userService.getAll(page, size);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
 }

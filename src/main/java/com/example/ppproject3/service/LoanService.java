@@ -56,6 +56,7 @@ public class LoanService extends OwnershipService {
 
         return new CreateLoanResponseDto(loan.getLoanId(), loan.getUser().getUserId(),loan.getBook().getId(), loan.getDueDate(),loan.getLoanDate());
     }
+
     @PostAuthorize("hasRole('ADMIN') or isAuthenticated() and this.isOwner(authentication.name, returnObject.user.id)")
     public GetLoanDto getOneById(long id){
         LoanEntity loan = loanRepository.findById(id).orElseThrow(() -> LoanNotFoundError.create(id));

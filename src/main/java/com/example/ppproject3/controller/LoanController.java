@@ -33,6 +33,7 @@ public class LoanController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable long id){
         loanService.delete(id);
         return ResponseEntity.noContent().build();
