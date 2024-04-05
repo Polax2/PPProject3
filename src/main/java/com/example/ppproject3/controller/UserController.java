@@ -34,11 +34,9 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    // TODO: zaimplementować dto, dodać body, dopisać logikę do serwisu, filmik 11
-    // NOTE: reader moze robic update tylko siebie samego, admin kazdego
-    public ResponseEntity<GetUserDto> updateUser(@PathVariable long id){
-        return null;
-
+    public ResponseEntity<PatchUserResponseDto> updateUser(@PathVariable long id, @RequestBody PatchUserDto dto){
+        PatchUserResponseDto responseDto = userService.update(id, dto);
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

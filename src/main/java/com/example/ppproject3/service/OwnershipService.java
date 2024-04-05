@@ -8,7 +8,7 @@ import jakarta.persistence.Tuple;
 import org.springframework.security.core.Authentication;
 
 public abstract class OwnershipService {
-    private final AuthRepository authRepository;
+    protected final AuthRepository authRepository;
 
     public OwnershipService(AuthRepository authRepository) {
         this.authRepository = authRepository;

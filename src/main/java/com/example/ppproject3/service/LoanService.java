@@ -91,7 +91,6 @@ public class LoanService extends OwnershipService {
         return  new GetLoanDto(loan.getLoanId(), book , user, loan.getLoanDate(), loan.getDueDate());
     }
 
-    //TODO: make loan not found error
     public void delete(long id){
         if(!loanRepository.existsById(id)){
             throw LoanNotFoundError.create(id);
