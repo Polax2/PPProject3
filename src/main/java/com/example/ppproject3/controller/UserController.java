@@ -2,6 +2,7 @@ package com.example.ppproject3.controller;
 import com.example.ppproject3.controller.dto.*;
 import com.example.ppproject3.service.AuthService;
 import com.example.ppproject3.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
+@Tag(name="User")
 @RestController
 @RequestMapping("/api/user")
 @PreAuthorize("isAuthenticated()")

@@ -2,27 +2,28 @@ package com.example.ppproject3.controller.dto;
 
 import java.util.List;
 
-public class GetUserPageResponseDto {
-    private List<GetUserDto> users;
+public class GetBookPageResponseDto {
+
+    private List<GetBookDto> books;
     private int currentPage;
     private long totalItem;
     private int totalPages;
     private boolean hashMore;
 
-    public GetUserPageResponseDto(List<GetUserDto> users, int currentPage, long totalItem, int totalPages, boolean hashMore) {
-        this.users = users;
+    public GetBookPageResponseDto(List<GetBookDto> books, int currentPage, long totalItem, int totalPages, boolean hashMore) {
+        this.books = books;
         this.currentPage = currentPage;
         this.totalItem = totalItem;
         this.totalPages = totalPages;
         this.hashMore = hashMore;
     }
 
-    public List<GetUserDto> getUsers() {
-        return users;
+    public List<GetBookDto> getBooks() {
+        return books;
     }
 
-    public void setUsers(List<GetUserDto> loans) {
-        this.users = loans;
+    public void setBooks(List<GetBookDto> books) {
+        this.books = books;
     }
 
     public int getCurrentPage() {

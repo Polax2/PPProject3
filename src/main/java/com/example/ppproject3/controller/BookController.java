@@ -1,12 +1,10 @@
 package com.example.ppproject3.controller;
 
 
-import com.example.ppproject3.controller.dto.CreateBookDto;
-import com.example.ppproject3.controller.dto.CreateBookResponseDto;
-import com.example.ppproject3.controller.dto.GetBookDto;
-import com.example.ppproject3.controller.dto.GetUserDto;
+import com.example.ppproject3.controller.dto.*;
 import com.example.ppproject3.infrastructure.entities.BookEntity;
 import com.example.ppproject3.service.BookService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Tag(name="Book")
 @RestController
 @RequestMapping("/api/books")
 @PreAuthorize("hasRole('ADMIN')")
@@ -27,20 +25,21 @@ public class BookController {
     }
 
 
-    @GetMapping
+    @GetMapping("/getAll")
     @PreAuthorize("isAuthenticated()")
-    // TODO: paging opcjonalnie
-    public List<GetBookDto> getAllBooks(){
-        return bookService.getAll();
+    public ResponseEntity<GetBookPageResponseDto> getAllBooks(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size){
+        GetBookPageResponseDto dto = bookService.getAll(page, size);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+
+    @GetMapping("/{id}/getOne")
     @PreAuthorize("isAuthenticated()")
     public GetBookDto getOne(@PathVariable long id){
         return bookService.getOne(id);
     }
 
-    @PostMapping
+    @PostMapping("/createBook")
     // TODO: walidacja opcjonalnie
     public ResponseEntity<CreateBookResponseDto> create(@RequestBody @Validated CreateBookDto book){
         var newBook = bookService.create(book);
@@ -55,7 +54,7 @@ public class BookController {
 
     @PatchMapping("/{id}")
     // TODO: zakupienie ksiązki, zmiana ilosci ksiazek to loan: search where return date = null
-    public ResponseEntity<GetBookDto> updateUser(@PathVariable long id){
+    public ResponseEntity<GetBookDto> updateBook(@PathVariable long id){
         return null;
 
     }

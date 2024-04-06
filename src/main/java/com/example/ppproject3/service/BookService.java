@@ -1,11 +1,13 @@
 package com.example.ppproject3.service;
 
-import com.example.ppproject3.controller.dto.CreateBookDto;
-import com.example.ppproject3.controller.dto.CreateBookResponseDto;
-import com.example.ppproject3.controller.dto.GetBookDto;
+import com.example.ppproject3.controller.dto.*;
 import com.example.ppproject3.infrastructure.entities.BookEntity;
+import com.example.ppproject3.infrastructure.entities.UserEntity;
 import com.example.ppproject3.infrastructure.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,14 +17,21 @@ import java.util.stream.Collectors;
 public class BookService {
     private final BookRepository bookRepository;
 
-    @Autowired
-    public BookService(BookRepository bookRepository){
-        this.bookRepository =bookRepository;
+    public BookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
     }
-    public List<GetBookDto> getAll(){
-        var books = bookRepository.findAll();
-        return books.stream().map(this::mapBook).collect(Collectors.toList());
+
+    public GetBookPageResponseDto getAll(int page, int size) {
+        Page<BookEntity> bookPage;
+
+        Pageable pageable = PageRequest.of(page, size);
+        bookPage = bookRepository.findAll(pageable);
+
+        List<GetBookDto> bookDto = bookPage.getContent().stream().map(this::mapBook).toList();
+        return new GetBookPageResponseDto(bookDto, bookPage.getNumber(), bookPage.getTotalElements(), bookPage.getTotalPages(), bookPage.hasNext());
     }
+
+
     public GetBookDto getOne(long id){
         var book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
         return mapBook(book);

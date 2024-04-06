@@ -1,6 +1,7 @@
 package com.example.ppproject3.controller;
 import com.example.ppproject3.controller.dto.*;
 import com.example.ppproject3.service.LoanService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Tag(name="Loan")
 @RestController
 @RequestMapping("/api/loans")
 @PreAuthorize("isAuthenticated()")
