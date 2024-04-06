@@ -40,7 +40,6 @@ public class BookController {
     }
 
     @PostMapping("/createBook")
-    // TODO: walidacja opcjonalnie
     public ResponseEntity<CreateBookResponseDto> create(@RequestBody @Validated CreateBookDto book){
         var newBook = bookService.create(book);
         return new ResponseEntity<>(newBook, HttpStatus.CREATED);
@@ -51,12 +50,12 @@ public class BookController {
         bookService.delete(id);
         return ResponseEntity.noContent().build();
     }
-
-    @PatchMapping("/{id}")
     // TODO: zakupienie ksiązki, zmiana ilosci ksiazek to loan: search where return date = null
-    public ResponseEntity<GetBookDto> updateBook(@PathVariable long id){
-        return null;
 
+    @PatchMapping("/{id}/addNewCopies")
+    public ResponseEntity<PatchBookResponseDto> updateBookCopies(@PathVariable long id, @RequestBody PatchBookDto dto){
+        PatchBookResponseDto responseDto = bookService.updateBookCopies(id, dto);
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
 
