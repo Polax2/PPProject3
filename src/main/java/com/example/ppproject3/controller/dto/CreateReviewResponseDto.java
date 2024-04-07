@@ -4,6 +4,7 @@ import com.example.ppproject3.infrastructure.entities.BookEntity;
 import com.example.ppproject3.infrastructure.entities.UserEntity;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class CreateReviewResponseDto {
 
@@ -12,18 +13,21 @@ public class CreateReviewResponseDto {
     private UserEntity user;
     private int rating;
     private String comment;
-    private LocalDate reviewDate;
+    private Date reviewDate;
 
     public CreateReviewResponseDto() {
     }
 
-    public CreateReviewResponseDto(Long reviewId, BookEntity book, UserEntity user, int rating, String comment, LocalDate reviewDate) {
+    public CreateReviewResponseDto(Long reviewId, BookEntity book, UserEntity user, int rating, String comment, Date reviewDate) {
         this.reviewId = reviewId;
         this.book = book;
         this.user = user;
         this.rating = rating;
         this.comment = comment;
         this.reviewDate = reviewDate;
+    }
+
+    public CreateReviewResponseDto(Long reviewId, BookEntity book, int rating, String comment, Date reviewDate) {
     }
 
     public Long getReviewId() {
@@ -66,11 +70,11 @@ public class CreateReviewResponseDto {
         this.comment = comment;
     }
 
-    public LocalDate getReviewDate() {
+    public Date getReviewDate() {
         return reviewDate;
     }
 
-    public void setReviewDate(LocalDate reviewDate) {
+    public void setReviewDate(Date reviewDate) {
         this.reviewDate = reviewDate;
     }
 }

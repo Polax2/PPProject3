@@ -1,5 +1,6 @@
 package com.example.ppproject3.infrastructure.entities;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class BookEntity
 
     @Basic
     @Column(name = "isbn")
+    @Size(min = 11, max = 13, message = "ISBN must be between 11 and 13 characters")
     private String isbn;
     @Basic
     @Column(name = "title")

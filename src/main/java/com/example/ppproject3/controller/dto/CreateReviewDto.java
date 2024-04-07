@@ -7,40 +7,41 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class CreateReviewDto {
 
-    private BookEntity book;
-    private UserEntity user;
+    private Long bookId;
+    private Long userId;
     private int rating;
     private String comment;
-    private LocalDate reviewDate;
+    private Date reviewDate;
 
     public CreateReviewDto() {
     }
 
-    public CreateReviewDto(BookEntity book, UserEntity user, int rating, String comment, LocalDate reviewDate) {
-        this.book = book;
-        this.user = user;
+    public CreateReviewDto(Long bookId, Long userId, int rating, String comment, Date reviewDate) {
+        this.bookId = bookId;
+        this.userId = userId;
         this.rating = rating;
         this.comment = comment;
         this.reviewDate = reviewDate;
     }
 
-    public BookEntity getBook() {
-        return book;
+    public Long getBookId() {
+        return bookId;
     }
 
-    public void setBook(BookEntity book) {
-        this.book = book;
+    public void setBookId(Long bookId) {
+        this.bookId = bookId;
     }
 
-    public UserEntity getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(UserEntity user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public int getRating() {
@@ -59,11 +60,11 @@ public class CreateReviewDto {
         this.comment = comment;
     }
 
-    public LocalDate getReviewDate() {
+    public Date getReviewDate() {
         return reviewDate;
     }
 
-    public void setReviewDate(LocalDate reviewDate) {
+    public void setReviewDate(Date reviewDate) {
         this.reviewDate = reviewDate;
     }
 }

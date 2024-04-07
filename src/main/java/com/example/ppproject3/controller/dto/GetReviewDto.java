@@ -1,9 +1,9 @@
 package com.example.ppproject3.controller.dto;
 
 import com.example.ppproject3.infrastructure.entities.BookEntity;
-import com.example.ppproject3.infrastructure.entities.UserEntity;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class GetReviewDto {
     private BookEntity book;
@@ -11,7 +11,7 @@ public class GetReviewDto {
     private String comment;
     private LocalDate reviewDate;
 
-    public GetReviewDto() {
+    public GetReviewDto(BookEntity book, int rating, String comment, Date reviewDate) {
     }
 
     public GetReviewDto(BookEntity book, int rating, String comment, LocalDate reviewDate) {

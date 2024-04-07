@@ -67,7 +67,7 @@ public class BookService {
         book.setAvailableCopies(book.getAvailableCopies() + dto.getNewCopies());
 
         bookRepository.save(book);
-        return new PatchBookResponseDto(book.getIsbn(   ), book.getTitle(), book.getAuthor(), book.getPublisher(), book.getYearPublished(), book.getAvailableCopies());
+        return new PatchBookResponseDto(book.getIsbn(), book.getTitle(), book.getAuthor(), book.getPublisher(), book.getYearPublished(), book.getAvailableCopies());
 
 
 

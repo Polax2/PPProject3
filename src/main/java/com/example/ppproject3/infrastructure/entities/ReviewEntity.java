@@ -1,7 +1,12 @@
 package com.example.ppproject3.infrastructure.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import org.springframework.beans.factory.annotation.Value;
+
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "reviews", schema = "library")
@@ -21,13 +26,15 @@ public class ReviewEntity {
     private UserEntity user;
 
     @Column(name = "rating", nullable = false)
+    @Min(value = 1, message = "Rating must be at least 1")
+    @Max(value = 5, message = "Rating must be at most 5")
     private int rating;
 
     @Column(name = "comment")
     private String comment;
 
     @Column(name = "review_date")
-    private LocalDate reviewDate;
+    private Date reviewDate;
 
 
 
@@ -71,11 +78,11 @@ public class ReviewEntity {
         this.comment = comment;
     }
 
-    public LocalDate getReviewDate() {
+    public Date getReviewDate() {
         return reviewDate;
     }
 
-    public void setReviewDate(LocalDate reviewDate) {
+    public void setReviewDate(Date reviewDate) {
         this.reviewDate = reviewDate;
     }
 }

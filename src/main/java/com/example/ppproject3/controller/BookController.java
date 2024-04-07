@@ -32,7 +32,6 @@ public class BookController {
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
-
     @GetMapping("/{id}/getOne")
     @PreAuthorize("isAuthenticated()")
     public GetBookDto getOne(@PathVariable long id){
@@ -50,7 +49,6 @@ public class BookController {
         bookService.delete(id);
         return ResponseEntity.noContent().build();
     }
-    // TODO: zakupienie ksiązki, zmiana ilosci ksiazek to loan: search where return date = null
 
     @PatchMapping("/{id}/addNewCopies")
     public ResponseEntity<PatchBookResponseDto> updateBookCopies(@PathVariable long id, @RequestBody PatchBookDto dto){
