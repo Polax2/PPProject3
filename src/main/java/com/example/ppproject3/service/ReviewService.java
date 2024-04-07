@@ -50,7 +50,6 @@ public class ReviewService {
         review.setReviewDate(review.getReviewDate());
         reviewRepository.save(review);
 
-
         return new CreateReviewResponseDto(review.getReviewId(), review.getBook(), review.getRating(), review.getComment(), review.getReviewDate());
     }
 
