@@ -50,9 +50,9 @@ public class BookController {
         return ResponseEntity.noContent().build();
     }
 
-    @PatchMapping("/{id}/addNewCopies")
-    public ResponseEntity<PatchBookResponseDto> updateBookCopies(@PathVariable long id, @RequestBody PatchBookDto dto){
-        PatchBookResponseDto responseDto = bookService.updateBookCopies(id, dto);
+    @PatchMapping("/{ISBN}/addNewCopies")
+    public ResponseEntity<PatchBookResponseDto> updateBookCopies(@PathVariable String ISBN, @RequestBody PatchBookDto dto){
+        PatchBookResponseDto responseDto = bookService.updateBookCopies(ISBN, dto);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 

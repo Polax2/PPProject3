@@ -61,8 +61,8 @@ public class BookService {
         bookRepository.deleteById(id);
     }
 
-    public PatchBookResponseDto updateBookCopies(long id, PatchBookDto dto){
-        BookEntity book = bookRepository.findById(id).orElseThrow(() -> BookNotFoundError.create(id));
+    public PatchBookResponseDto updateBookCopies(String ISBN, PatchBookDto dto){
+        BookEntity book = bookRepository.findById(Long.valueOf(ISBN)).orElseThrow(() -> BookNotFoundError.create(Long.parseLong(ISBN)));
 
         book.setAvailableCopies(book.getAvailableCopies() + dto.getNewCopies());
 
